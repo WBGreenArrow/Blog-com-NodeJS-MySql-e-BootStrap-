@@ -1,0 +1,20 @@
+<div class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+        GuiaPress
+    </a>
+
+    <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        
+        <% categories.map((item) =>{%>
+            <li  class="nav-item">
+        <a class="nav-link" href="/category/<%= item.slug %>"><%= item.title %></a>
+
+     <%})%>
+
+
+    </ul>
+</div>

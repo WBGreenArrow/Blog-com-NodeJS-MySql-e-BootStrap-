@@ -1,0 +1,44 @@
+<%- include('../../partials/header.ejs')%>
+<%- include('../../partials/navbar.ejs')%>
+<body>
+    <div class="container">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h2>Editar Artigo</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/articles/update/save">
+                    <input class="form-control" type="text" name="title" value="<%- article.title %>"">
+                    <input type="hidden" name="id" value="<%= article.id %>">
+                    <br>
+                    <textarea id="article" class="form-control" name="body" > <%- article.body %> </textarea><br>
+                    <label>Categoria</label>
+                    <select name="category" class="form-control"> <% categories.map((item) =>{%>
+                        <% if(item.id == article.categoryId){%>
+                            <option value="<%-item.id%>" selected><%-item.title%></option>
+                        <%}else{%>
+                            <option value="<%-item.id%>"><%-item.title%></option>
+                        <%}%>
+                    <%})%> </select><br>
+                    <button class="btn btn-success">Salvar</button>
+                </form>  
+            </div>
+            
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs')%>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        selector:"#article",
+        language:"pt_BR",
+        plugins:[
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoctions'
+        ]
+    })
+
+</script>

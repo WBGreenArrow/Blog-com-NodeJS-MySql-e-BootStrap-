@@ -1,0 +1,57 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<body>
+    <div class="container">
+        <hr>
+        <h2>Categorias</h2>
+        <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
+        <hr>
+        <table class="table table-bordered">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>ID</th>
+                    <th>TÍTULO</th>
+                    <th>SLUG</th>
+                    <th>AÇÔES</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <% categories.map((item) =>{%>
+                    <tr>
+                        <th><%= item.id %> </th>
+                        <th><%= item.title %></th>
+                        <th><%= item.slug %></th>
+                        <th>
+                            <a class="btn btn-warning" href="/admin/categories/edit/<%= item.id %>">Editar</a>
+                            <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="ConfirmDelete(event, this)">
+                                <input type="hidden" name="id" value="<%= item.id %>">
+                                <button class="btn btn-danger">Deletar</button>
+                            </form>
+                            
+                        </th>
+                    </tr>
+                <%})%>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+
+// Confimar Delete
+
+    function ConfirmDelete(event, form){
+
+        event.preventDefault();
+
+        var decision = confirm("Você tem certeza que deseja excluir a categoria?");
+
+        if(decision){
+
+            form.submit()
+        }
+    }
+
+</script>
+
+<%- include ('../../partials/footer.ejs')%>

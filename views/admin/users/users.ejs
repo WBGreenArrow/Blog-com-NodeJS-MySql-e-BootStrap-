@@ -1,0 +1,28 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<body>
+    <div class="container">
+        <hr>
+        <h2>Usuarios</h2>
+        <a class="btn btn-success" href="/admin/users/create">Criar novo Usúario</a>
+        <hr>
+        <table style="table-layout: fixed;" class="table table-bordered">
+
+            <thead style="text-align: center;">
+                <tr>
+                    <th>ID</th>
+                    <th>EMAIL</th>     
+                </tr>
+            </thead>
+                <% users.map((item) =>{%>
+                    <tbody style="text-align: center;">
+                    <td><%= item.id %></td>
+                    <td><%= item.email %></td>
+                </tbody>
+                <%})%>
+           
+        </table>
+    </div>
+</body>
+
+<%- include ('../../partials/footer.ejs')%>

@@ -1,0 +1,49 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/homenavbar.ejs') %>
+
+<body>
+    <div class="container">
+        <% result.articles.rows.map((item) =>{%>
+            <br>
+            <div class="card">
+                <div class="card-header"> <%= item.title %> </div>
+                <div class="card-body">
+                    <a class="btn btn-success" href="/<%= item.slug %>">Ler Artigo</a>
+                </form>
+
+            </div>
+            </div>
+
+             <%})%>
+             <hr>
+
+             <div class="row">
+                <div class="col col-12">
+
+                    <% if(result.page > 2){%>
+
+                        <a style="float: left;" href="/articles/page/<%= result.page - 1 %>"><< Prev </a> 
+
+                    <%}else if(result.page == 2){%>
+
+                        <a style="float: left;" href="/"><< Prev </a> 
+                    
+                    <%}%>
+                        
+             
+
+                    <% if(result.next){%>
+                        <a style="float: right;" href="/articles/page/<%= result.page + 1 %>">Next >></a>
+                    <%}%>
+                    
+                </div>
+             </div>
+             <hr>
+
+    </div>
+
+    </div>
+</body>
+
+
+<%- include('../../partials/footer.ejs') %>

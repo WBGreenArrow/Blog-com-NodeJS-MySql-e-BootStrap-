@@ -1,0 +1,33 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/homenavbar.ejs') %>
+
+
+<body>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-Vindo!</h1>
+            <p class="lead">Este é um simples bog do guia do progrmador.</p>
+            <hr class="my-4">
+            <p>Descrição detelhada.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          </div>
+
+        <% article.map((item) =>{%>
+            <br>
+            <div class="card">
+                <div class="card-header"> <%= item.title %> </div>
+                <div class="card-body">
+                    <a class="btn btn-success" href="/<%= item.slug %>">Ler Artigo</a>
+                </form>
+
+            </div>
+            </div>
+
+             <%})%>
+
+    </div>
+</body>
+
+
+<%- include('partials/footer.ejs') %>

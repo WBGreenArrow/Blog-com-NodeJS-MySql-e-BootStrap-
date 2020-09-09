@@ -1,0 +1,54 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<body>
+    <div class="container">
+        <hr>
+        <h2>Artigos</h2>
+        <a class="btn btn-success" href="/admin/articles/new">Criar novo Artigo</a>
+        <hr>
+        <table style="table-layout: fixed;" class="table table-bordered">
+
+            <thead style="text-align: center;">
+                <tr>
+                    <th>ID</th>
+                    <th>TÍTULO</th>
+                    <th>SLUG</th>
+                    <th>CATEGORIA</th>
+                    <th>AÇÔES</th>
+                </tr>
+            </thead>
+                <% articles.map((item) =>{%>
+                    <tbody style="text-align: center;">
+                    <td><%= item.id %></td>
+                    <td style="max-width: 10ch;"><%= item.title %></td>
+                    <td style="text-overflow: ellipsis;"><%= item.slug %></td>
+                    <td><%= item.category.title %></td>
+                    <td>
+                            <a class="btn bg-warning" href="/admin/articles/update/<%= item.id %>" style="display: inline-block;">Editar</a>
+
+                        <form  style="display: inline-block;" method="POST" action="/articles/delete" onsubmit="ConfirmDeleteArticle(event, this)">
+                            <button class="btn btn-danger">Deletar</button>
+                            <input type="hidden" name="id" value="<%= item.id %>">
+                        </form>
+                       
+                    </td>
+                </tbody>
+                <%})%>
+           
+        </table>
+    </div>
+</body>
+<script>
+    function ConfirmDeleteArticle(event, form){
+
+        event.preventDefault();
+
+        var validation = confirm("Tem certeza que deseja excluír esse artigo?");
+
+        if(validation == true){
+
+            form.submit();
+        }
+    }
+</script>
+<%- include ('../../partials/footer.ejs')%>
